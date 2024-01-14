@@ -21,6 +21,10 @@ namespace TDHeart {
             return entities["Entity_Tower"];
         }
 
+        public GameObject Entity_GetRole() {
+            return entities["Entity_Role"];
+        }
+
         bool Entity_TryGet(string name, out GameObject entity) {
             return entities.TryGetValue(name, out entity);
         }

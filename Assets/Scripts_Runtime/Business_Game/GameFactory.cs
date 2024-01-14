@@ -4,10 +4,10 @@ namespace TDHeart {
 
     public static class GameFactory {
 
-        public static CellEntity Cell_Create(IDService idService, int typeID, Vector2Int pos) {
+        public static CellEntity Cell_Create(IDService idService, int typeID, Vector3Int pos) {
             CellEntity cell = new CellEntity();
             cell.id = idService.cellID++;
-            cell.pos = pos;
+            cell.lpos = pos;
             return cell;
         }
 
@@ -18,6 +18,15 @@ namespace TDHeart {
             tower.lpos = pos;
             tower.SetRPos(pos);
             return tower;
+        }
+
+        public static RoleEntity Role_Create(TemplateContext templateContext, IDService idService, int typeID, Vector3 pos) {
+            GameObject prefab = templateContext.Entity_GetRole();
+            RoleEntity role = GameObject.Instantiate(prefab).GetComponent<RoleEntity>();
+            role.id = idService.roleID++;
+            role.lpos = pos;
+            role.SetRPos(pos);
+            return role;
         }
 
     }
