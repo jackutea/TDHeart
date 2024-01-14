@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,11 @@ namespace TDHeart {
 
         void Awake() {
             mainContext = new MainContext();
+
+            TemplateInfra.LoadAll(mainContext.templateContext);
             Debug.Log("Hello");
+
+            GameBusiness.Enter(mainContext.gameContext);
         }
 
         void Update() {
