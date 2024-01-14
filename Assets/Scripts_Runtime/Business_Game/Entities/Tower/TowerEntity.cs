@@ -9,6 +9,17 @@ namespace TDHeart {
 
         public Vector3Int lpos;
 
+        // Spawner
+        public TowerSpawnerModel spawnerModel;
+
+        public void Ctor() {
+            spawnerModel = new TowerSpawnerModel();
+        }
+
+        public void Init() {
+            spawnerModel.Fake();
+        }
+
         public void SetRPos(Vector3Int rpos) {
             transform.position = rpos;
         }
