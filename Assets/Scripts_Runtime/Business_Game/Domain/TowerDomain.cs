@@ -11,6 +11,32 @@ namespace TDHeart {
             return tower;
         }
 
+        public static void Spawner_TrySpawn(GameContext ctx, TowerEntity tower, float fixdt) {
+            var spawner = tower.spawnerModel;
+            if (!spawner.isEnable) {
+                return;
+            }
+
+            spawner.cd -= fixdt;
+            if (spawner.cd > 0) {
+                return;
+            }
+
+            spawner.maintainTimer -= fixdt;
+            if (spawner.maintainTimer <= 0) {
+                spawner.maintainTimer = spawner.maintain;
+                spawner.cd = spawner.cdMax;
+                return;
+            }
+
+            spawner.intervalTimer -= fixdt;
+            if (spawner.intervalTimer <= 0) {
+                spawner.intervalTimer = spawner.interval;
+                Debug.Log("SpawnMonster");
+            }
+
+        }
+
     }
 
 }

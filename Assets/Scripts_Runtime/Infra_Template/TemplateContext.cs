@@ -8,6 +8,7 @@ namespace TDHeart {
     public class TemplateContext  {
 
         Dictionary<string, GameObject> entities;
+        public AsyncOperationHandle entitiesOp;
 
         public TemplateContext() {
             entities = new Dictionary<string, GameObject>();

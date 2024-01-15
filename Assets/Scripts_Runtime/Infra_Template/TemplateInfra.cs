@@ -16,6 +16,13 @@ namespace TDHeart {
                 foreach (var obj in list) {
                     ctx.Entity_Add(obj.name, obj);
                 }
+                ctx.entitiesOp = op;
+            }
+        }
+
+        public static void UnloadAll(TemplateContext ctx) {
+            if (ctx.entitiesOp.IsValid()) {
+                Addressables.Release(ctx.entitiesOp);
             }
         }
 

@@ -7,8 +7,12 @@ namespace TDHeart {
             RoleDomain.Spawn(ctx, 1, new UnityEngine.Vector3(5, 0, 0));
         }
 
-        public static void Tick(GameContext ctx, float dt) {
-
+        public static void FixedTick(GameContext ctx, float fixdt) {
+            int towerLen = ctx.towerRepository.TakeAll(out var towers);
+            for (int i = 0; i < towerLen; i += 1) {
+                var tower = towers[i];
+                TowerDomain.Spawner_TrySpawn(ctx, tower, fixdt);
+            }
         }
 
     }
