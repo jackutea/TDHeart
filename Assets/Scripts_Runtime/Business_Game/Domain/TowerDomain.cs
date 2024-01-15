@@ -4,8 +4,8 @@ namespace TDHeart {
 
     public static class TowerDomain {
 
-        public static TowerEntity Spawn(GameContext ctx, int typeID, Vector3Int pos) {
-            TowerEntity tower = GameFactory.Tower_Create(ctx.templateContext, ctx.idService, typeID, pos);
+        public static TowerEntity Spawn(GameContext ctx, int typeID, Vector3Int pos, AllyFlag allyFlag) {
+            TowerEntity tower = GameFactory.Tower_Create(ctx.templateContext, ctx.idService, typeID, allyFlag, pos);
             tower.Init();
             ctx.towerRepository.Add(tower);
             return tower;
@@ -32,7 +32,7 @@ namespace TDHeart {
             spawner.intervalTimer -= fixdt;
             if (spawner.intervalTimer <= 0) {
                 spawner.intervalTimer = spawner.interval;
-                Debug.Log("SpawnMonster");
+                RoleDomain.SpawnByTower(ctx, tower, spawner.typeID);
             }
 
         }

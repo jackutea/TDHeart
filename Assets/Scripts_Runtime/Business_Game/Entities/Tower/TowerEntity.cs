@@ -6,6 +6,7 @@ namespace TDHeart {
     public class TowerEntity : MonoBehaviour {
 
         public int id;
+        public AllyFlag allyFlag;
 
         public Vector3Int lpos;
 

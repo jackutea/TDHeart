@@ -1,10 +1,11 @@
+using UnityEngine;
+
 namespace TDHeart {
 
     public static class GameBusiness {
 
         public static void Enter(GameContext ctx) {
-            TowerDomain.Spawn(ctx, 1, new UnityEngine.Vector3Int(0, 5, 0));
-            RoleDomain.Spawn(ctx, 1, new UnityEngine.Vector3(5, 0, 0));
+            TowerDomain.Spawn(ctx, 1, new Vector3Int(0, 0, 10), AllyFlag.Monster);
         }
 
         public static void FixedTick(GameContext ctx, float fixdt) {
@@ -12,6 +13,12 @@ namespace TDHeart {
             for (int i = 0; i < towerLen; i += 1) {
                 var tower = towers[i];
                 TowerDomain.Spawner_TrySpawn(ctx, tower, fixdt);
+            }
+
+            int roleLen = ctx.roleRepository.TakeAll(out var roles);
+            for (int i = 0; i < roleLen; i += 1) {
+                var role = roles[i];
+                RoleDomain.Move_Auto(ctx, role, fixdt);
             }
         }
 

@@ -13,7 +13,7 @@ namespace TDHeart {
         public float maintainTimer;
         public float interval;
         public float intervalTimer;
-        public float typeID;
+        public int typeID;
 
         // Path
         public Vector3Int[] path; // [0] is spawn point
@@ -23,12 +23,12 @@ namespace TDHeart {
             isEnable = true;
 
             cd = 0;
-            cdMax = 1;
+            cdMax = 3;
 
-            maintain = 1;
+            maintain = 3;
             maintainTimer = 0;
-            interval = 0.1f;
-            intervalTimer = 0.1f;
+            interval = 1f;
+            intervalTimer = 0;
             typeID = 1;
 
             path = new Vector3Int[] {

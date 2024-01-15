@@ -11,20 +11,23 @@ namespace TDHeart {
             return cell;
         }
 
-        public static TowerEntity Tower_Create(TemplateContext templateContext, IDService idService, int typeID, Vector3Int pos) {
+        public static TowerEntity Tower_Create(TemplateContext templateContext, IDService idService, int typeID, AllyFlag allyFlag, Vector3Int pos) {
             GameObject prefab = templateContext.Entity_GetTower();
             TowerEntity tower = GameObject.Instantiate(prefab).GetComponent<TowerEntity>();
             tower.Ctor();
             tower.id = idService.towerID++;
+            tower.allyFlag = allyFlag;
             tower.lpos = pos;
             tower.SetRPos(pos);
             return tower;
         }
 
-        public static RoleEntity Role_Create(TemplateContext templateContext, IDService idService, int typeID, Vector3 pos) {
+        public static RoleEntity Role_Create(TemplateContext templateContext, IDService idService, int typeID, AllyFlag allyFlag, Vector3 pos) {
             GameObject prefab = templateContext.Entity_GetRole();
             RoleEntity role = GameObject.Instantiate(prefab).GetComponent<RoleEntity>();
+            role.Ctor();
             role.id = idService.roleID++;
+            role.allyFlag = allyFlag;
             role.lpos = pos;
             role.SetRPos(pos);
             return role;
