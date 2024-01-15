@@ -8,6 +8,9 @@ namespace TDHeart {
         public AllyFlag allyFlag;
         public Vector3 lpos;
 
+        // Mesh
+        [SerializeField] public Transform body;
+
         // Move
         public RoleMoveModel moveModel;
 
@@ -20,6 +23,7 @@ namespace TDHeart {
         }
 
         public void Move_ByPath(float fixdt) {
+
             var move = moveModel;
             if (move.path == null) {
                 return;
@@ -39,6 +43,8 @@ namespace TDHeart {
             } else {
                 transform.position += dir.normalized * dist;
             }
+
+            transform.LookAt(dir.normalized + transform.position);
 
         }
 
