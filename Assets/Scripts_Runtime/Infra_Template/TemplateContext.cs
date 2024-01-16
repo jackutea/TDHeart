@@ -16,22 +16,22 @@ namespace TDHeart {
         Dictionary<string, GameObject> huds;
         public AsyncOperationHandle hudsOp;
 
-        Dictionary<int, RoleTM> roleTMs;
+        Dictionary<int, RoleSO> roleTMs;
         public AsyncOperationHandle roleTMsOp;
 
-        Dictionary<int, TowerTM> towerTMs;
+        Dictionary<int, TowerSO> towerTMs;
         public AsyncOperationHandle towerTMsOp;
 
-        Dictionary<int, PropTM> propTMs;
+        Dictionary<int, PropSO> propTMs;
         public AsyncOperationHandle propTMsOp;
 
         public TemplateContext() {
             entities = new Dictionary<string, GameObject>();
             panels = new Dictionary<string, GameObject>();
             huds = new Dictionary<string, GameObject>();
-            roleTMs = new Dictionary<int, RoleTM>(100);
-            towerTMs = new Dictionary<int, TowerTM>(100);
-            propTMs = new Dictionary<int, PropTM>(100);
+            roleTMs = new Dictionary<int, RoleSO>(100);
+            towerTMs = new Dictionary<int, TowerSO>(100);
+            propTMs = new Dictionary<int, PropSO>(100);
         }
 
         // Entity
@@ -70,29 +70,29 @@ namespace TDHeart {
         }
 
         // TM Role
-        public void Role_Add(RoleTM tm) {
+        public void Role_Add(RoleSO tm) {
             roleTMs.Add(tm.typeID, tm);
         }
 
-        public RoleTM Role_Get(int typeID) {
+        public RoleSO Role_Get(int typeID) {
             return roleTMs[typeID];
         }
 
         // TM Tower
-        public void Tower_Add(TowerTM tm) {
+        public void Tower_Add(TowerSO tm) {
             towerTMs.Add(tm.typeID, tm);
         }
 
-        public TowerTM Tower_Get(int typeID) {
+        public TowerSO Tower_Get(int typeID) {
             return towerTMs[typeID];
         }
 
         // TM Prop
-        public void Prop_Add(PropTM tm) {
+        public void Prop_Add(PropSO tm) {
             propTMs.Add(tm.typeID, tm);
         }
 
-        public PropTM Prop_Get(int typeID) {
+        public PropSO Prop_Get(int typeID) {
             return propTMs[typeID];
         }
 

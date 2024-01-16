@@ -47,6 +47,7 @@ namespace TDHeart {
 
             uiEvents.P_Failed_OnExitHandle += () => {
                 UIApp.P_Failed_Close(mainContext.uiContext);
+                GameBusiness.Exit(mainContext.gameContext);
                 LoginBusiness.Enter(mainContext.loginContext);
             };
 

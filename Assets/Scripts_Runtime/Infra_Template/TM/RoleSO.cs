@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace TDHeart {
 
-    [CreateAssetMenu(fileName = "RoleTM", menuName = "TDHeart/RoleTM", order = 0)]
-    public class RoleTM : ScriptableObject {
+    [CreateAssetMenu(fileName = "SO_Role_", menuName = "TDHeart/SO_Role", order = 0)]
+    public class RoleSO : ScriptableObject {
         
         public int typeID;
         public string typeName;

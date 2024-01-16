@@ -23,7 +23,7 @@ namespace TDHeart {
             if (!has) {
                 Debug.LogError("Tower prefab not found");
             }
-            TowerTM tm = templateContext.Tower_Get(typeID);
+            TowerSO tm = templateContext.Tower_Get(typeID);
             TowerEntity tower = GameObject.Instantiate(prefab).GetComponent<TowerEntity>();
             GameObject mod = GameObject.Instantiate(tm.modPrefab, tower.transform);
             tower.Ctor(mod);
@@ -38,7 +38,7 @@ namespace TDHeart {
             if (!has) {
                 Debug.LogError("Tower prefab not found");
             }
-            RoleTM tm = templateContext.Role_Get(typeID);
+            RoleSO tm = templateContext.Role_Get(typeID);
             RoleEntity role = GameObject.Instantiate(prefab).GetComponent<RoleEntity>();
             GameObject mod = GameObject.Instantiate(tm.modPrefab, role.transform);
             role.Ctor(mod);
@@ -56,7 +56,7 @@ namespace TDHeart {
             if (!has) {
                 Debug.LogError("Prop prefab not found");
             }
-            PropTM tm = templateContext.Prop_Get(typeID);
+            PropSO tm = templateContext.Prop_Get(typeID);
             PropEntity prop = GameObject.Instantiate(prefab).GetComponent<PropEntity>();
             GameObject mod = GameObject.Instantiate(tm.modPrefab, prop.transform);
             prop.Ctor(mod);

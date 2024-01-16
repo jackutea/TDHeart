@@ -10,21 +10,21 @@ namespace TDHeart {
 
             int towerLen = ctx.towerRepository.TakeAll(out var towers);
             for (int i = 0; i < towerLen; i += 1) {
-                var tower = towers[i];
+                TowerEntity tower = towers[i];
                 tower.TearDown();
                 ctx.towerRepository.Remove(tower);
             }
 
             int roleLen = ctx.roleRepository.TakeAll(out var roles);
             for (int i = 0; i < roleLen; i += 1) {
-                var role = roles[i];
+                RoleEntity role = roles[i];
                 role.TearDown();
                 ctx.roleRepository.Remove(role);
             }
 
             int propLen = ctx.propRepository.TakeAll(out var props);
             for (int i = 0; i < propLen; i += 1) {
-                var prop = props[i];
+                PropEntity prop = props[i];
                 prop.TearDown();
                 ctx.propRepository.Remove(prop);
             }

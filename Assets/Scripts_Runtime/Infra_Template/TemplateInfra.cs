@@ -38,7 +38,7 @@ namespace TDHeart {
             }
             {
                 const string label = "TM_Role";
-                var op = Addressables.LoadAssetsAsync<RoleTM>(label, null);
+                var op = Addressables.LoadAssetsAsync<RoleSO>(label, null);
                 var list = op.WaitForCompletion();
                 foreach (var tm in list) {
                     ctx.Role_Add(tm);
@@ -47,7 +47,7 @@ namespace TDHeart {
             }
             {
                 const string label = "TM_Tower";
-                var op = Addressables.LoadAssetsAsync<TowerTM>(label, null);
+                var op = Addressables.LoadAssetsAsync<TowerSO>(label, null);
                 var list = op.WaitForCompletion();
                 foreach (var tm in list) {
                     ctx.Tower_Add(tm);
@@ -56,7 +56,7 @@ namespace TDHeart {
             }
             {
                 const string label = "TM_Prop";
-                var op = Addressables.LoadAssetsAsync<PropTM>(label, null);
+                var op = Addressables.LoadAssetsAsync<PropSO>(label, null);
                 var list = op.WaitForCompletion();
                 foreach (var tm in list) {
                     ctx.Prop_Add(tm);
