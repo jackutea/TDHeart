@@ -10,9 +10,13 @@ namespace TDHeart {
 
         public IDService idService;
 
+        public UIContext uiContext;
         public TemplateContext templateContext;
 
         public GameContext() {
+
+            player = new PlayerEntity();
+
             cellRepository = new CellRepository();
             towerRepository = new TowerRepository();
             roleRepository = new RoleRepository();
@@ -22,7 +26,8 @@ namespace TDHeart {
 
         }
 
-        public void Inject(TemplateContext templateContext) {
+        public void Inject(UIContext uiContext, TemplateContext templateContext) {
+            this.uiContext = uiContext;
             this.templateContext = templateContext;
         }
 

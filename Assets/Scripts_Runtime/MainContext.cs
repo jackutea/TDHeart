@@ -21,7 +21,7 @@ namespace TDHeart {
             templateContext = new TemplateContext();
 
             loginContext.Inject(uiContext);
-            gameContext.Inject(templateContext);
+            gameContext.Inject(uiContext, templateContext);
 
             uiContext.Inject(panelCanvas, hudCanvas, templateContext);
 
