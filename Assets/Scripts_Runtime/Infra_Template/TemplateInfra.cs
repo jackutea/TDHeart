@@ -19,6 +19,24 @@ namespace TDHeart {
                 ctx.entitiesOp = op;
             }
             {
+                const string label = "Panel";
+                var op = Addressables.LoadAssetsAsync<GameObject>(label, null);
+                var list = op.WaitForCompletion();
+                foreach (var obj in list) {
+                    ctx.Panel_Add(obj.name, obj);
+                }
+                ctx.panelsOp = op;
+            }
+            {
+                const string label = "HUD";
+                var op = Addressables.LoadAssetsAsync<GameObject>(label, null);
+                var list = op.WaitForCompletion();
+                foreach (var obj in list) {
+                    ctx.HUD_Add(obj.name, obj);
+                }
+                ctx.hudsOp = op;
+            }
+            {
                 const string label = "TM_Role";
                 var op = Addressables.LoadAssetsAsync<RoleTM>(label, null);
                 var list = op.WaitForCompletion();
@@ -32,6 +50,12 @@ namespace TDHeart {
         public static void UnloadAll(TemplateContext ctx) {
             if (ctx.entitiesOp.IsValid()) {
                 Addressables.Release(ctx.entitiesOp);
+            }
+            if (ctx.panelsOp.IsValid()) {
+                Addressables.Release(ctx.panelsOp);
+            }
+            if (ctx.hudsOp.IsValid()) {
+                Addressables.Release(ctx.hudsOp);
             }
             if (ctx.roleTMsOp.IsValid()) {
                 Addressables.Release(ctx.roleTMsOp);

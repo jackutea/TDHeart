@@ -12,7 +12,10 @@ namespace TDHeart {
         }
 
         public static TowerEntity Tower_Create(TemplateContext templateContext, IDService idService, int typeID, AllyFlag allyFlag, Vector3Int pos) {
-            GameObject prefab = templateContext.Entity_GetTower();
+            bool has = templateContext.Entity_TryGetTower(out GameObject prefab);
+            if (!has) {
+                Debug.LogError("Tower prefab not found");
+            }
             TowerEntity tower = GameObject.Instantiate(prefab).GetComponent<TowerEntity>();
             tower.Ctor();
             tower.id = idService.towerID++;
@@ -23,7 +26,10 @@ namespace TDHeart {
         }
 
         public static RoleEntity Role_Create(TemplateContext templateContext, IDService idService, int typeID, AllyFlag allyFlag, Vector3 pos) {
-            GameObject prefab = templateContext.Entity_GetRole();
+            bool has = templateContext.Entity_TryGetRole(out GameObject prefab);
+            if (!has) {
+                Debug.LogError("Tower prefab not found");
+            }
             RoleEntity role = GameObject.Instantiate(prefab).GetComponent<RoleEntity>();
             RoleTM tm = templateContext.Role_Get(typeID);
             GameObject mod = GameObject.Instantiate(tm.modPrefab, role.transform);

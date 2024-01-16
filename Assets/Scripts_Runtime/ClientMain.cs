@@ -6,6 +6,9 @@ namespace TDHeart {
 
     public class ClientMain : MonoBehaviour {
 
+        [SerializeField] Canvas panelCanvas;
+        [SerializeField] Canvas hudCanvas;
+
         MainContext mainContext;
 
         bool isTearDown = false;
@@ -14,12 +17,23 @@ namespace TDHeart {
 
         void Awake() {
 
-            mainContext = new MainContext();
+            mainContext = new MainContext(panelCanvas, hudCanvas);
 
             TemplateInfra.LoadAll(mainContext.templateContext);
 
-            GameBusiness.Enter(mainContext.gameContext);
+            Binding();
 
+            LoginBusiness.Enter(mainContext.loginContext);
+
+        }
+
+        void Binding() {
+            // UI Events
+            var uiEvents = mainContext.uiContext.events;
+            uiEvents.P_Login_OnClickStartHandle += () => {
+                LoginBusiness.Exit(mainContext.loginContext);
+                GameBusiness.Enter(mainContext.gameContext);
+            };
         }
 
         void Update() {
