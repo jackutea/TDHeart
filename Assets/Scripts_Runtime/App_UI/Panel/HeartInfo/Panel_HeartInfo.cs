@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TDHeart {
+namespace TDHeart.UI {
 
     public class Panel_HeartInfo : MonoBehaviour {
 
@@ -14,6 +14,10 @@ namespace TDHeart {
 
         public void Ctor() {
             hearts = new List<Image>();
+        }
+
+        public void Show() {
+            gameObject.SetActive(true);
         }
 
         public void Close() {

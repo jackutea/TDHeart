@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TDHeart.UI;
 
 namespace TDHeart {
 
@@ -9,6 +10,7 @@ namespace TDHeart {
 
         public Panel_Login panel_login;
         public Panel_HeartInfo panel_heartInfo;
+        public Panel_Failed panel_failed;
 
         public UIEvents events;
 

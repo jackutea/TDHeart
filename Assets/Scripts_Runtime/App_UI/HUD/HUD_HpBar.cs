@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TDHeart {
+namespace TDHeart.UI {
 
     public class HUD_HpBar : MonoBehaviour {
 

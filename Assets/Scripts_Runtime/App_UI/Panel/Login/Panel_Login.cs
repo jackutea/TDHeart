@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TDHeart {
+namespace TDHeart.UI {
 
     public class Panel_Login : MonoBehaviour {
 
@@ -14,6 +14,10 @@ namespace TDHeart {
             startBtn.onClick.AddListener(() => {
                 OnStartBtnClickHandle?.Invoke();
             });
+        }
+
+        public void Show() {
+            gameObject.SetActive(true);
         }
 
         public void Close() {

@@ -28,12 +28,28 @@ namespace TDHeart {
         }
 
         void Binding() {
-            // UI Events
+
+            // ==== UI Events ====
             var uiEvents = mainContext.uiContext.events;
+
+            // - Login
             uiEvents.P_Login_OnClickStartHandle += () => {
                 LoginBusiness.Exit(mainContext.loginContext);
                 GameBusiness.Enter(mainContext.gameContext);
             };
+
+            // - Failed
+            uiEvents.P_Failed_OnRestartHandle += () => {
+                UIApp.P_Failed_Close(mainContext.uiContext);
+                GameBusiness.Exit(mainContext.gameContext);
+                GameBusiness.Enter(mainContext.gameContext);
+            };
+
+            uiEvents.P_Failed_OnExitHandle += () => {
+                UIApp.P_Failed_Close(mainContext.uiContext);
+                LoginBusiness.Enter(mainContext.loginContext);
+            };
+
         }
 
         void Update() {

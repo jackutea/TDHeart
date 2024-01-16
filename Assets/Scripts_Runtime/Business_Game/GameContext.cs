@@ -2,6 +2,7 @@ namespace TDHeart {
 
     public class GameContext {
 
+        public GameEntity game;
         public PlayerEntity player;
         public CellRepository cellRepository;
         public TowerRepository towerRepository;
@@ -15,6 +16,7 @@ namespace TDHeart {
 
         public GameContext() {
 
+            game = new GameEntity();
             player = new PlayerEntity();
 
             cellRepository = new CellRepository();

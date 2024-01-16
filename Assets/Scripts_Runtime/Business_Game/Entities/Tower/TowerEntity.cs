@@ -21,6 +21,10 @@ namespace TDHeart {
             spawnerModel.Fake();
         }
 
+        public void TearDown() {
+            GameObject.Destroy(gameObject);
+        }
+
         public void Pos_Set(Vector3Int pos) {
             transform.position = pos;
             lpos = pos;
