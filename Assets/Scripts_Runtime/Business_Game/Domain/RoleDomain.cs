@@ -10,6 +10,11 @@ namespace TDHeart {
             return role;
         }
 
+        public static void Unspawn(GameContext ctx, RoleEntity role) {
+            role.TearDown();
+            ctx.roleRepository.Remove(role);
+        }
+
         public static RoleEntity SpawnByTower(GameContext ctx, TowerEntity tower, int typeID) {
             RoleEntity role = Spawn(ctx, typeID, tower.lpos, tower.allyFlag);
             role.Pos_Set(tower.spawnerModel.path[0]);
@@ -21,10 +26,14 @@ namespace TDHeart {
             role.Move_ByPath(fixdt);
         }
 
-        public static void Overlap_DeadLine(GameContext ctx, RoleEntity role) {
-            var overlapProp = PhxUtil.Overlap_Prop(ctx, role.lpos, 0.1f);
+        public static void Overlap_Prop(GameContext ctx, RoleEntity role) {
+            var overlapProp = PhxUtil.Overlap_Prop(ctx, role.allyFlag.Opposite(), role.lpos, 0.1f);
             if (overlapProp != null) {
-                Debug.Log("Dead");
+                // Deadline
+                PlayerDomain.Hurt(ctx, 1);
+
+                // Unspawn
+                Unspawn(ctx, role);
             }
         }
 

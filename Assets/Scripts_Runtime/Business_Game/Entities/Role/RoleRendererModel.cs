@@ -12,6 +12,10 @@ namespace TDHeart {
             this.mod = mod;
         }
 
+        public void TearDown() {
+            GameObject.Destroy(mod);
+        }
+
     }
 
 }

@@ -4,6 +4,13 @@ namespace TDHeart {
 
     public static class GameFactory {
 
+        public static PlayerEntity Player_Create(TemplateContext templateContext, IDService idService, int typeID) {
+            PlayerEntity player = new PlayerEntity();
+            player.hp = 3;
+            player.hpMax = 3;
+            return player;
+        }
+
         public static CellEntity Cell_Create(IDService idService, int typeID, Vector3Int pos) {
             CellEntity cell = new CellEntity();
             cell.id = idService.cellID++;
@@ -42,9 +49,10 @@ namespace TDHeart {
             return role;
         }
 
-        public static PropEntity Prop_Create(IDService idService, int typeID, Vector3 pos) {
+        public static PropEntity Prop_Create(IDService idService, int typeID, AllyFlag allyFlag, Vector3 pos) {
             PropEntity prop = new PropEntity();
             prop.id = idService.propID++;
+            prop.allyFlag = allyFlag;
             prop.lpos = pos;
             return prop;
         }

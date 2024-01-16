@@ -7,6 +7,7 @@ namespace TDHeart {
         public int id;
         public AllyFlag allyFlag;
         public Vector3 lpos;
+        public Vector3 ldir;
 
         public int hp;
         public int hpMax;
@@ -21,6 +22,11 @@ namespace TDHeart {
             moveModel = new RoleMoveModel();
             rendererModel = new RoleRendererModel();
             rendererModel.Ctor(mod);
+        }
+
+        public void TearDown() {
+            rendererModel.TearDown();
+            GameObject.Destroy(gameObject);
         }
 
         public void DrawUI(Camera camera) {
@@ -46,19 +52,21 @@ namespace TDHeart {
             }
 
             Vector3 target = move.path[move.pathIndex];
-            Vector3 dir = target - lpos;
+            ldir = target - lpos;
             float speed = 1f;
             float dist = speed * fixdt;
-            if (dir.magnitude <= dist) {
+            if (ldir.magnitude <= dist) {
                 lpos = target;
                 move.pathIndex++;
             } else {
-                lpos += dir.normalized * dist;
+                lpos += ldir.normalized * dist;
             }
 
-            transform.position = lpos;
-            transform.LookAt(dir.normalized + lpos);
+        }
 
+        public void R_Update() {
+            transform.position = lpos;
+            transform.LookAt(ldir.normalized + lpos);
         }
 
     }
