@@ -25,6 +25,8 @@ namespace TDHeart {
         void Update() {
 
             float dt = Time.deltaTime;
+            GameBusiness.PreTick(mainContext.gameContext, dt);
+
             restTime += dt;
             float fixedInterval = GameConst.FIXED_INTERVAL;
             if (restTime <= fixedInterval) {
@@ -36,6 +38,8 @@ namespace TDHeart {
                     restTime -= fixedInterval;
                 }
             }
+
+            GameBusiness.PostTick(mainContext.gameContext, dt);
 
         }
 

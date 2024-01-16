@@ -25,11 +25,16 @@ namespace TDHeart {
         public static RoleEntity Role_Create(TemplateContext templateContext, IDService idService, int typeID, AllyFlag allyFlag, Vector3 pos) {
             GameObject prefab = templateContext.Entity_GetRole();
             RoleEntity role = GameObject.Instantiate(prefab).GetComponent<RoleEntity>();
-            role.Ctor();
+            RoleTM tm = templateContext.Role_Get(typeID);
+            GameObject mod = GameObject.Instantiate(tm.modPrefab, role.transform);
+            role.Ctor(mod);
             role.id = idService.roleID++;
             role.allyFlag = allyFlag;
             role.lpos = pos;
             role.SetRPos(pos);
+
+            role.hp = 10;
+            role.hpMax = 10;
             return role;
         }
 

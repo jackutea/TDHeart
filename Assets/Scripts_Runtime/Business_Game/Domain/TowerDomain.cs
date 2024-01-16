@@ -32,7 +32,7 @@ namespace TDHeart {
             spawner.intervalTimer -= fixdt;
             if (spawner.intervalTimer <= 0) {
                 spawner.intervalTimer = spawner.interval;
-                RoleDomain.SpawnByTower(ctx, tower, spawner.typeID);
+                RoleDomain.SpawnByTower(ctx, tower, 100);
             }
 
         }

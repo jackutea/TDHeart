@@ -8,14 +8,25 @@ namespace TDHeart {
         public AllyFlag allyFlag;
         public Vector3 lpos;
 
-        // Mesh
-        [SerializeField] public Transform body;
+        public int hp;
+        public int hpMax;
 
         // Move
         public RoleMoveModel moveModel;
 
-        public void Ctor() {
+        // Renderer
+        public RoleRendererModel rendererModel;
+
+        public void Ctor(GameObject mod) {
             moveModel = new RoleMoveModel();
+            rendererModel = new RoleRendererModel();
+            rendererModel.Ctor(mod);
+        }
+
+        public void DrawUI(Camera camera) {
+            Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
+            float screenH = Screen.height;
+            GUI.DrawTexture(new Rect(screenPos.x, screenH - screenPos.y, 100, 10), Texture2D.whiteTexture);
         }
 
         public void SetRPos(Vector3 rpos) {

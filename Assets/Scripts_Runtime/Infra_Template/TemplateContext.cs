@@ -10,8 +10,12 @@ namespace TDHeart {
         Dictionary<string, GameObject> entities;
         public AsyncOperationHandle entitiesOp;
 
+        Dictionary<int, RoleTM> roleTMs;
+        public AsyncOperationHandle roleTMsOp;
+
         public TemplateContext() {
             entities = new Dictionary<string, GameObject>();
+            roleTMs = new Dictionary<int, RoleTM>(100);
         }
 
         public void Entity_Add(string name, GameObject entity) {
@@ -26,8 +30,13 @@ namespace TDHeart {
             return entities["Entity_Role"];
         }
 
-        bool Entity_TryGet(string name, out GameObject entity) {
-            return entities.TryGetValue(name, out entity);
+        // Role
+        public void Role_Add(RoleTM tm) {
+            roleTMs.Add(tm.typeID, tm);
+        }
+
+        public RoleTM Role_Get(int typeID) {
+            return roleTMs[typeID];
         }
 
     }
