@@ -21,8 +21,9 @@ namespace TDHeart {
             spawnerModel.Fake();
         }
 
-        public void SetRPos(Vector3Int rpos) {
-            transform.position = rpos;
+        public void Pos_Set(Vector3Int pos) {
+            transform.position = pos;
+            lpos = pos;
         }
 
     }

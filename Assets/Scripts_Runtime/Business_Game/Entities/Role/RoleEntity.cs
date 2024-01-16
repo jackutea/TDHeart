@@ -29,7 +29,8 @@ namespace TDHeart {
             GUI.DrawTexture(new Rect(screenPos.x, screenH - screenPos.y, 100, 10), Texture2D.whiteTexture);
         }
 
-        public void SetRPos(Vector3 rpos) {
+        public void Pos_Set(Vector3 rpos) {
+            lpos = rpos;
             transform.position = rpos;
         }
 
@@ -45,17 +46,18 @@ namespace TDHeart {
             }
 
             Vector3 target = move.path[move.pathIndex];
-            Vector3 dir = target - transform.position;
+            Vector3 dir = target - lpos;
             float speed = 1f;
             float dist = speed * fixdt;
             if (dir.magnitude <= dist) {
-                transform.position = target;
+                lpos = target;
                 move.pathIndex++;
             } else {
-                transform.position += dir.normalized * dist;
+                lpos += dir.normalized * dist;
             }
 
-            transform.LookAt(dir.normalized + transform.position);
+            transform.position = lpos;
+            transform.LookAt(dir.normalized + lpos);
 
         }
 

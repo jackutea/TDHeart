@@ -12,14 +12,20 @@ namespace TDHeart {
 
         public static RoleEntity SpawnByTower(GameContext ctx, TowerEntity tower, int typeID) {
             RoleEntity role = Spawn(ctx, typeID, tower.lpos, tower.allyFlag);
-            role.lpos = tower.spawnerModel.path[0];
-            role.SetRPos(role.lpos);
+            role.Pos_Set(tower.spawnerModel.path[0]);
             role.moveModel.path = tower.spawnerModel.path;
             return role;
         }
 
         public static void Move_Auto(GameContext ctx, RoleEntity role, float fixdt) {
             role.Move_ByPath(fixdt);
+        }
+
+        public static void Overlap_DeadLine(GameContext ctx, RoleEntity role) {
+            var overlapProp = PhxUtil.Overlap_Prop(ctx, role.lpos, 0.1f);
+            if (overlapProp != null) {
+                Debug.Log("Dead");
+            }
         }
 
     }

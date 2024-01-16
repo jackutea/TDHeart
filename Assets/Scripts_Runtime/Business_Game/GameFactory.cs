@@ -20,8 +20,7 @@ namespace TDHeart {
             tower.Ctor();
             tower.id = idService.towerID++;
             tower.allyFlag = allyFlag;
-            tower.lpos = pos;
-            tower.SetRPos(pos);
+            tower.Pos_Set(pos);
             return tower;
         }
 
@@ -36,12 +35,18 @@ namespace TDHeart {
             role.Ctor(mod);
             role.id = idService.roleID++;
             role.allyFlag = allyFlag;
-            role.lpos = pos;
-            role.SetRPos(pos);
+            role.Pos_Set(pos);
 
             role.hp = 10;
             role.hpMax = 10;
             return role;
+        }
+
+        public static PropEntity Prop_Create(IDService idService, int typeID, Vector3 pos) {
+            PropEntity prop = new PropEntity();
+            prop.id = idService.propID++;
+            prop.lpos = pos;
+            return prop;
         }
 
     }

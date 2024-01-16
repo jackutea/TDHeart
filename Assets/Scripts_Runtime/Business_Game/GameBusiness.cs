@@ -5,7 +5,8 @@ namespace TDHeart {
     public static class GameBusiness {
 
         public static void Enter(GameContext ctx) {
-            TowerDomain.Spawn(ctx, 1, new Vector3Int(0, 0, 10), AllyFlag.Monster);
+            TowerDomain.Spawn(ctx, 1, new Vector3Int(0, 0, 10), AllyFlag.Monster); // Cave
+            PropDomain.Spawn(ctx, 1, new Vector3Int(0, 0, 0)); // DeadLine
         }
 
         public static void PreTick(GameContext ctx, float dt) {
@@ -26,6 +27,7 @@ namespace TDHeart {
             for (int i = 0; i < roleLen; i += 1) {
                 var role = roles[i];
                 RoleDomain.Move_Auto(ctx, role, fixdt);
+                RoleDomain.Overlap_DeadLine(ctx, role);
             }
         }
 
