@@ -25,6 +25,7 @@ namespace TDHeart {
             int propLen = ctx.propRepository.TakeAll(out var props);
             for (int i = 0; i < propLen; i += 1) {
                 var prop = props[i];
+                prop.TearDown();
                 ctx.propRepository.Remove(prop);
             }
 

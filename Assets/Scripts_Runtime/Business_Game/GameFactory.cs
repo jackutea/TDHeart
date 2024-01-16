@@ -23,8 +23,10 @@ namespace TDHeart {
             if (!has) {
                 Debug.LogError("Tower prefab not found");
             }
+            TowerTM tm = templateContext.Tower_Get(typeID);
             TowerEntity tower = GameObject.Instantiate(prefab).GetComponent<TowerEntity>();
-            tower.Ctor();
+            GameObject mod = GameObject.Instantiate(tm.modPrefab, tower.transform);
+            tower.Ctor(mod);
             tower.id = idService.towerID++;
             tower.allyFlag = allyFlag;
             tower.Pos_Set(pos);
@@ -36,8 +38,8 @@ namespace TDHeart {
             if (!has) {
                 Debug.LogError("Tower prefab not found");
             }
-            RoleEntity role = GameObject.Instantiate(prefab).GetComponent<RoleEntity>();
             RoleTM tm = templateContext.Role_Get(typeID);
+            RoleEntity role = GameObject.Instantiate(prefab).GetComponent<RoleEntity>();
             GameObject mod = GameObject.Instantiate(tm.modPrefab, role.transform);
             role.Ctor(mod);
             role.id = idService.roleID++;
@@ -49,11 +51,18 @@ namespace TDHeart {
             return role;
         }
 
-        public static PropEntity Prop_Create(IDService idService, int typeID, AllyFlag allyFlag, Vector3 pos) {
-            PropEntity prop = new PropEntity();
+        public static PropEntity Prop_Create(TemplateContext templateContext, IDService idService, int typeID, AllyFlag allyFlag, Vector3 pos) {
+            bool has = templateContext.Entity_TryGetProp(out GameObject prefab);
+            if (!has) {
+                Debug.LogError("Prop prefab not found");
+            }
+            PropTM tm = templateContext.Prop_Get(typeID);
+            PropEntity prop = GameObject.Instantiate(prefab).GetComponent<PropEntity>();
+            GameObject mod = GameObject.Instantiate(tm.modPrefab, prop.transform);
+            prop.Ctor(mod);
             prop.id = idService.propID++;
             prop.allyFlag = allyFlag;
-            prop.lpos = pos;
+            prop.Pos_Set(pos);
             return prop;
         }
 

@@ -45,6 +45,24 @@ namespace TDHeart {
                 }
                 ctx.roleTMsOp = op;
             }
+            {
+                const string label = "TM_Tower";
+                var op = Addressables.LoadAssetsAsync<TowerTM>(label, null);
+                var list = op.WaitForCompletion();
+                foreach (var tm in list) {
+                    ctx.Tower_Add(tm);
+                }
+                ctx.towerTMsOp = op;
+            }
+            {
+                const string label = "TM_Prop";
+                var op = Addressables.LoadAssetsAsync<PropTM>(label, null);
+                var list = op.WaitForCompletion();
+                foreach (var tm in list) {
+                    ctx.Prop_Add(tm);
+                }
+                ctx.propTMsOp = op;
+            }
         }
 
         public static void UnloadAll(TemplateContext ctx) {

@@ -19,11 +19,19 @@ namespace TDHeart {
         Dictionary<int, RoleTM> roleTMs;
         public AsyncOperationHandle roleTMsOp;
 
+        Dictionary<int, TowerTM> towerTMs;
+        public AsyncOperationHandle towerTMsOp;
+
+        Dictionary<int, PropTM> propTMs;
+        public AsyncOperationHandle propTMsOp;
+
         public TemplateContext() {
             entities = new Dictionary<string, GameObject>();
             panels = new Dictionary<string, GameObject>();
             huds = new Dictionary<string, GameObject>();
             roleTMs = new Dictionary<int, RoleTM>(100);
+            towerTMs = new Dictionary<int, TowerTM>(100);
+            propTMs = new Dictionary<int, PropTM>(100);
         }
 
         // Entity
@@ -39,7 +47,11 @@ namespace TDHeart {
             return entities.TryGetValue("Entity_Role", out go);
         }
 
-        // Panel
+        public bool Entity_TryGetProp(out GameObject go) {
+            return entities.TryGetValue("Entity_Prop", out go);
+        }
+
+        // UI Panel
         public void Panel_Add(string name, GameObject panel) {
             panels.Add(name, panel);
         }
@@ -48,7 +60,7 @@ namespace TDHeart {
             return panels.TryGetValue(name, out go);
         }
 
-        // HUD
+        // UI HUD
         public void HUD_Add(string name, GameObject hud) {
             huds.Add(name, hud);
         }
@@ -57,13 +69,31 @@ namespace TDHeart {
             return huds.TryGetValue(name, out go);
         }
 
-        // Role
+        // TM Role
         public void Role_Add(RoleTM tm) {
             roleTMs.Add(tm.typeID, tm);
         }
 
         public RoleTM Role_Get(int typeID) {
             return roleTMs[typeID];
+        }
+
+        // TM Tower
+        public void Tower_Add(TowerTM tm) {
+            towerTMs.Add(tm.typeID, tm);
+        }
+
+        public TowerTM Tower_Get(int typeID) {
+            return towerTMs[typeID];
+        }
+
+        // TM Prop
+        public void Prop_Add(PropTM tm) {
+            propTMs.Add(tm.typeID, tm);
+        }
+
+        public PropTM Prop_Get(int typeID) {
+            return propTMs[typeID];
         }
 
     }

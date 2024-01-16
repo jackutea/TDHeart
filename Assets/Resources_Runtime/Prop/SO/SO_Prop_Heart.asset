@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5e90baffbd8694997a680eaacff56f, type: 3}
+  m_Name: SO_Prop_Heart
+  m_EditorClassIdentifier: 
+  typeID: 100
+  typeName: 
+  modPrefab: {fileID: 418319585685801867, guid: 8d2888b642a3d3b44bf0a5a013be042e, type: 3}

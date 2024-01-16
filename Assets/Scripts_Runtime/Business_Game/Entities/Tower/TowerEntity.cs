@@ -13,7 +13,10 @@ namespace TDHeart {
         // Spawner
         public TowerSpawnerModel spawnerModel;
 
-        public void Ctor() {
+        GameObject mod;
+
+        public void Ctor(GameObject mod) {
+            this.mod = mod;
             spawnerModel = new TowerSpawnerModel();
         }
 
@@ -22,6 +25,7 @@ namespace TDHeart {
         }
 
         public void TearDown() {
+            GameObject.Destroy(mod);
             GameObject.Destroy(gameObject);
         }
 
