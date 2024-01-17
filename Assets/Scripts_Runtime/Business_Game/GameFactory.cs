@@ -30,6 +30,30 @@ namespace TDHeart {
             tower.id = idService.towerID++;
             tower.allyFlag = allyFlag;
             tower.Pos_Set(pos);
+
+            // spawner
+            var spawnerTM = tm.spawnerTM;
+            var spawnerModel = tower.spawnerModel;
+            if (spawnerTM != null && spawnerTM.isSpawner) {
+                spawnerModel.waves = new TowerWaveModel[spawnerTM.waves.Length];
+                for (int i = 0; i < spawnerTM.waves.Length; i += 1) {
+                    TowerWaveTM waveTM = spawnerTM.waves[i];
+                    TowerWaveModel waveModel = new TowerWaveModel();
+                    waveModel.waveNumber = waveTM.waveNumber;
+                    waveModel.cd = waveTM.cd;
+                    waveModel.cdMax = waveTM.cd;
+                    waveModel.maintain = waveTM.maintain;
+                    waveModel.maintainTimer = waveTM.maintain;
+                    waveModel.interval = waveTM.interval;
+                    waveModel.intervalTimer = waveTM.interval;
+                    waveModel.typeID = waveTM.typeID;
+                    waveModel.count = 0;
+                    waveModel.countMax = waveTM.count;
+                    spawnerModel.waves[i] = waveModel;
+                }
+                spawnerModel.waveNumber = 0;
+                spawnerModel.path = spawnerTM.path;
+            }
             return tower;
         }
 

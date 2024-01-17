@@ -21,7 +21,6 @@ namespace TDHeart {
         }
 
         public void Init() {
-            spawnerModel.Fake();
         }
 
         public void TearDown() {

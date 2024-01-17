@@ -8,6 +8,8 @@ namespace TDHeart {
         public int typeID;
         public string typeName;
 
+        public TowerSpawnerTM spawnerTM;
+
         public GameObject modPrefab;
 
     }

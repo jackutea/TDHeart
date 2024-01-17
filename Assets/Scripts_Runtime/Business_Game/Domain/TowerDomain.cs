@@ -12,27 +12,60 @@ namespace TDHeart {
         }
 
         public static void Spawner_TrySpawn(GameContext ctx, TowerEntity tower, float fixdt) {
+
             var spawner = tower.spawnerModel;
-            if (!spawner.isEnable) {
+            if (spawner.waves == null || spawner.waves.Length == 0) {
                 return;
             }
 
-            spawner.cd -= fixdt;
-            if (spawner.cd > 0) {
+            int waveNumber = spawner.waveNumber;
+            TowerWaveModel[] waves = spawner.waves;
+            if (waveNumber >= waves.Length) {
                 return;
             }
 
-            spawner.maintainTimer -= fixdt;
-            if (spawner.maintainTimer <= 0) {
-                spawner.maintainTimer = spawner.maintain;
-                spawner.cd = spawner.cdMax;
+            int doneWaveCount = 0;
+            int waveNumberWaveCount = 0;
+            for (int i = 0; i < waves.Length; i++) {
+                ref TowerWaveModel wave = ref waves[i];
+                if (wave.waveNumber == waveNumber) {
+                    Spawner_ByWave(ctx, tower, ref wave, fixdt);
+                    waveNumberWaveCount++;
+                    if (wave.count >= wave.countMax) {
+                        doneWaveCount++;
+                    }
+                }
+            }
+
+            if (waveNumberWaveCount == doneWaveCount) {
+                spawner.waveNumber++;
+            }
+
+        }
+
+        static void Spawner_ByWave(GameContext ctx, TowerEntity tower, ref TowerWaveModel wave, float fixdt) {
+
+            if (wave.count >= wave.countMax) {
                 return;
             }
 
-            spawner.intervalTimer -= fixdt;
-            if (spawner.intervalTimer <= 0) {
-                spawner.intervalTimer = spawner.interval;
-                RoleDomain.SpawnByTower(ctx, tower, 100);
+            wave.cd -= fixdt;
+            if (wave.cd > 0) {
+                return;
+            }
+
+            wave.intervalTimer -= fixdt;
+            if (wave.intervalTimer <= 0) {
+                wave.intervalTimer = wave.interval;
+                RoleDomain.SpawnByTower(ctx, tower, wave.typeID);
+                wave.count++;
+            }
+
+            wave.maintainTimer -= fixdt;
+            if (wave.maintainTimer <= 0) {
+                wave.maintainTimer = wave.maintain;
+                wave.cd = wave.cdMax;
+                return;
             }
 
         }

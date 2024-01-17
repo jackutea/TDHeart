@@ -14,4 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeID: 100
   typeName: 
+  spawnerTM:
+    isSpawner: 1
+    waves:
+    - waveNumber: 0
+      cd: 2
+      maintain: 5
+      interval: 1
+      typeID: 100
+      count: 5
+    path:
+    - {x: 0, y: 0, z: 15}
+    - {x: 0, y: 0, z: 0}
   modPrefab: {fileID: 3626270587417034756, guid: 888d7dd0e51a6dc45833fd743a5803fc, type: 3}
