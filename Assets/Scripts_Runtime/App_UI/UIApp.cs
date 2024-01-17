@@ -71,6 +71,27 @@ namespace TDHeart {
             panel?.Close();
         }
 
+        // P Win
+        public static void P_Win_Open(UIContext ctx) {
+            var panel = ctx.panel_win;
+            if (panel == null) {
+                panel = UIFactory.P_Win_Create(ctx);
+                panel.Ctor();
+                ctx.panel_win = panel;
+
+                panel.OnReturnHandle = () => {
+                    ctx.events.P_Win_OnReturn();
+                };
+
+            }
+            panel.Show();
+        }
+
+        public static void P_Win_Close(UIContext ctx) {
+            var panel = ctx.panel_win;
+            panel?.Close();
+        }
+
     }
 
 }

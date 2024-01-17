@@ -19,7 +19,7 @@ MonoBehaviour:
     waves:
     - waveNumber: 0
       cd: 2
-      maintain: 5
+      maintain: 5.01
       interval: 1
       typeID: 100
       count: 5

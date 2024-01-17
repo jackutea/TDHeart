@@ -5,16 +5,7 @@ namespace TDHeart {
     public static class GameBusiness {
 
         public static void Enter(GameContext ctx) {
-
-            var game = ctx.game;
-            game.Normal_Enter();
-
-            PlayerDomain.Spawn(ctx, 1);
-            TowerDomain.Spawn(ctx, 100, new Vector3Int(0, 0, 10), AllyFlag.Monster); // Cave
-            PropDomain.Spawn(ctx, 100, AllyFlag.Player, new Vector3Int(0, 0, 0)); // DeadLine
-
-            UIApp.P_HeartInfo_Open(ctx.uiContext);
-
+            GameDomain.EnterGame(ctx);
         }
 
         public static void Exit(GameContext ctx) {
@@ -27,6 +18,8 @@ namespace TDHeart {
                 Normal_PreTick(ctx, dt);
             } else if (game.status == GameStatus.Failed) {
                 Failed_PreTick(ctx, dt);
+            } else if (game.status == GameStatus.Win) {
+                Win_PreTick(ctx, dt);
             }
         }
 
@@ -36,6 +29,8 @@ namespace TDHeart {
                 Normal_FixedTick(ctx, fixdt);
             } else if (game.status == GameStatus.Failed) {
                 Failed_FixedTick(ctx, fixdt);
+            } else if (game.status == GameStatus.Win) {
+                Win_FixedTick(ctx, fixdt);
             }
         }
 
@@ -45,6 +40,8 @@ namespace TDHeart {
                 Normal_PostTick(ctx, dt);
             } else if (game.status == GameStatus.Failed) {
                 Failed_PostTick(ctx, dt);
+            } else if (game.status == GameStatus.Win) {
+                Win_PostTick(ctx, dt);
             }
         }
 
@@ -100,6 +97,23 @@ namespace TDHeart {
         }
 
         static void Failed_PostTick(GameContext ctx, float dt) {
+
+        }
+
+        // ==== Win ====
+        static void Win_PreTick(GameContext ctx, float dt) {
+            var game = ctx.game;
+            if (game.win_isEntering) {
+                game.win_isEntering = false;
+                UIApp.P_Win_Open(ctx.uiContext);
+            }
+        }
+
+        static void Win_FixedTick(GameContext ctx, float fixdt) {
+
+        }
+
+        static void Win_PostTick(GameContext ctx, float dt) {
 
         }
 

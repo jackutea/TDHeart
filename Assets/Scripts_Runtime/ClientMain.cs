@@ -51,6 +51,13 @@ namespace TDHeart {
                 LoginBusiness.Enter(mainContext.loginContext);
             };
 
+            // - Win
+            uiEvents.P_Win_OnReturnHandle += () => {
+                UIApp.P_Win_Close(mainContext.uiContext);
+                GameBusiness.Exit(mainContext.gameContext);
+                LoginBusiness.Enter(mainContext.loginContext);
+            };
+
         }
 
         void Update() {

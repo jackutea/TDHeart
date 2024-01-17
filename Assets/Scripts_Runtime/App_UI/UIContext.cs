@@ -11,6 +11,7 @@ namespace TDHeart {
         public Panel_Login panel_login;
         public Panel_HeartInfo panel_heartInfo;
         public Panel_Failed panel_failed;
+        public Panel_Win panel_win;
 
         public UIEvents events;
 

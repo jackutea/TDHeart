@@ -16,6 +16,10 @@ namespace TDHeart.UI {
             return Create<Panel_Failed>(ctx);
         }
 
+        public static Panel_Win P_Win_Create(UIContext ctx) {
+            return Create<Panel_Win>(ctx);
+        }
+
         static T Create<T>(UIContext ctx) where T : MonoBehaviour {
             ctx.templateContext.Panel_TryGet(typeof(T).Name, out var prefab);
             var panel = GameObject.Instantiate(prefab, ctx.panelCanvas.transform).GetComponent<T>();
