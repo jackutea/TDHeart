@@ -11,8 +11,15 @@ namespace TDHeart {
         }
 
         public static void Unspawn(GameContext ctx, RoleEntity role) {
+
+            bool hasParent = ctx.towerRepository.TryGet(role.belongTowerID, out TowerEntity tower);
+            if (hasParent) {
+                tower.spawnerModel.spawnedEnemyIDs.Remove(role.id);
+            }
+
             role.TearDown();
             ctx.roleRepository.Remove(role);
+
         }
 
         public static RoleEntity SpawnByTower(GameContext ctx, TowerEntity tower, int typeID) {

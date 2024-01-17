@@ -6,8 +6,8 @@ namespace TDHeart {
 
         public static PlayerEntity Player_Create(TemplateContext templateContext, IDService idService, int typeID) {
             PlayerEntity player = new PlayerEntity();
-            player.hp = 3;
-            player.hpMax = 3;
+            player.hp = 6;
+            player.hpMax = 6;
             return player;
         }
 

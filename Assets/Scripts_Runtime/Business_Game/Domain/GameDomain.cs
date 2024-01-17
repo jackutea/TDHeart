@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace TDHeart {
 
     public static class GameDomain {
@@ -40,6 +42,18 @@ namespace TDHeart {
                 game.Failed_Enter();
                 return;
             }
+
+            int towerLen = ctx.towerRepository.TakeAll(out var towers);
+            for (int i = 0; i < towerLen; i += 1) {
+                TowerEntity tower = towers[i];
+                if (tower.allyFlag == AllyFlag.Monster) {
+                    if (!tower.spawnerModel.IsAllWaveClear()) {
+                        return;
+                    }
+                }
+            }
+            game.Win_Enter();
+            Debug.Log("Win");
 
         }
 

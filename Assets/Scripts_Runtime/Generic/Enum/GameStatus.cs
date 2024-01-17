@@ -5,6 +5,7 @@ namespace TDHeart {
         Normal,
         Pause,
         Failed,
+        Win,
     }
 
 }

@@ -57,7 +57,9 @@ namespace TDHeart {
             wave.intervalTimer -= fixdt;
             if (wave.intervalTimer <= 0) {
                 wave.intervalTimer = wave.interval;
-                RoleDomain.SpawnByTower(ctx, tower, wave.typeID);
+                var spawnedRole = RoleDomain.SpawnByTower(ctx, tower, wave.typeID);
+                spawnedRole.belongTowerID = tower.id;
+                tower.spawnerModel.spawnedEnemyIDs.Add(spawnedRole.id);
                 wave.count++;
             }
 
