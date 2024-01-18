@@ -94,6 +94,21 @@ namespace TDHeart {
             return prop;
         }
 
+        public static BulletEntity Bullet_Create(TemplateContext templateContext, IDService idService, int typeID, AllyFlag allyFlag, Vector3 pos) {
+            bool has = templateContext.Entity_TryGetBullet(out GameObject prefab);
+            if (!has) {
+                Debug.LogError("Bullet prefab not found");
+            }
+            BulletSO tm = templateContext.Bullet_Get(typeID);
+            BulletEntity bullet = GameObject.Instantiate(prefab).GetComponent<BulletEntity>();
+            GameObject mod = GameObject.Instantiate(tm.modPrefab, bullet.transform);
+            bullet.Ctor(mod);
+            bullet.id = idService.bulletID++;
+            bullet.allyFlag = allyFlag;
+            bullet.Pos_Set(pos);
+            return bullet;
+        }
+
     }
 
 }

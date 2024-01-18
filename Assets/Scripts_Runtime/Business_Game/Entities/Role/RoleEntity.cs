@@ -5,6 +5,7 @@ namespace TDHeart {
     public class RoleEntity : MonoBehaviour {
 
         public int id;
+        public readonly EntityType entityType = EntityType.Role;
         public int belongTowerID;
         public AllyFlag allyFlag;
         public Vector3 lpos;

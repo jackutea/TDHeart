@@ -8,6 +8,7 @@ namespace TDHeart {
         public TowerRepository towerRepository;
         public RoleRepository roleRepository;
         public PropRepository propRepository;
+        public BulletRepository bulletRepository;
 
         public IDService idService;
 
@@ -23,6 +24,7 @@ namespace TDHeart {
             towerRepository = new TowerRepository();
             roleRepository = new RoleRepository();
             propRepository = new PropRepository();
+            bulletRepository = new BulletRepository();
 
             idService = new IDService();
 

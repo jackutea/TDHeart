@@ -25,6 +25,9 @@ namespace TDHeart {
         Dictionary<int, PropSO> propTMs;
         public AsyncOperationHandle propTMsOp;
 
+        Dictionary<int, BulletSO> bulletTMs;
+        public AsyncOperationHandle bulletTMsOp;
+
         public TemplateContext() {
             entities = new Dictionary<string, GameObject>();
             panels = new Dictionary<string, GameObject>();
@@ -32,6 +35,7 @@ namespace TDHeart {
             roleTMs = new Dictionary<int, RoleSO>(100);
             towerTMs = new Dictionary<int, TowerSO>(100);
             propTMs = new Dictionary<int, PropSO>(100);
+            bulletTMs = new Dictionary<int, BulletSO>(100);
         }
 
         // Entity
@@ -53,6 +57,10 @@ namespace TDHeart {
 
         public bool Entity_TryGetProp(out GameObject go) {
             return entities.TryGetValue("Entity_Prop", out go);
+        }
+
+        public bool Entity_TryGetBullet(out GameObject go) {
+            return entities.TryGetValue("Entity_Bullet", out go);
         }
 
         // UI Panel
@@ -98,6 +106,15 @@ namespace TDHeart {
 
         public PropSO Prop_Get(int typeID) {
             return propTMs[typeID];
+        }
+
+        // TM Bullet
+        public void Bullet_Add(BulletSO tm) {
+            bulletTMs.Add(tm.typeID, tm);
+        }
+
+        public BulletSO Bullet_Get(int typeID) {
+            return bulletTMs[typeID];
         }
 
     }

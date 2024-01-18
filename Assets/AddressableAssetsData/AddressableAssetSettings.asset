@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 917e1cc5ddb11b347990d1b8beaff63a, type: 2}
   - {fileID: 11400000, guid: 6c73de45005654a4fa7c72d852fd063d, type: 2}
   - {fileID: 11400000, guid: 94f817d950a8cca44873620bfce7915c, type: 2}
+  - {fileID: 11400000, guid: 91228c14e10c0234c9c1bcc1f0afedd5, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -99,6 +100,7 @@ MonoBehaviour:
     - TM_Role
     - TM_Prop
     - TM_Tower
+    - TM_Bullet
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: e9a68aa6c3adc544d80f416ac8610877, type: 2}

@@ -63,6 +63,15 @@ namespace TDHeart {
                 }
                 ctx.propTMsOp = op;
             }
+            {
+                const string label = "TM_Bullet";
+                var op = Addressables.LoadAssetsAsync<BulletSO>(label, null);
+                var list = op.WaitForCompletion();
+                foreach (var tm in list) {
+                    ctx.Bullet_Add(tm);
+                }
+                ctx.bulletTMsOp = op;
+            }
         }
 
         public static void UnloadAll(TemplateContext ctx) {
@@ -77,6 +86,15 @@ namespace TDHeart {
             }
             if (ctx.roleTMsOp.IsValid()) {
                 Addressables.Release(ctx.roleTMsOp);
+            }
+            if (ctx.towerTMsOp.IsValid()) {
+                Addressables.Release(ctx.towerTMsOp);
+            }
+            if (ctx.propTMsOp.IsValid()) {
+                Addressables.Release(ctx.propTMsOp);
+            }
+            if (ctx.bulletTMsOp.IsValid()) {
+                Addressables.Release(ctx.bulletTMsOp);
             }
         }
 
