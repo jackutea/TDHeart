@@ -11,6 +11,7 @@ namespace TDHeart {
             return tower;
         }
 
+        // Spawn
         public static void Spawner_TrySpawn(GameContext ctx, TowerEntity tower, float fixdt) {
 
             var spawner = tower.spawnerModel;
@@ -29,7 +30,7 @@ namespace TDHeart {
             for (int i = 0; i < waves.Length; i++) {
                 ref TowerWaveModel wave = ref waves[i];
                 if (wave.waveNumber == waveNumber) {
-                    Spawner_ByWave(ctx, tower, ref wave, fixdt);
+                    Spawner_SpawnByWave(ctx, tower, ref wave, fixdt);
                     waveNumberWaveCount++;
                     if (wave.count >= wave.countMax) {
                         doneWaveCount++;
@@ -43,7 +44,7 @@ namespace TDHeart {
 
         }
 
-        static void Spawner_ByWave(GameContext ctx, TowerEntity tower, ref TowerWaveModel wave, float fixdt) {
+        static void Spawner_SpawnByWave(GameContext ctx, TowerEntity tower, ref TowerWaveModel wave, float fixdt) {
 
             if (wave.count >= wave.countMax) {
                 return;
@@ -68,6 +69,56 @@ namespace TDHeart {
                 wave.maintainTimer = wave.maintain;
                 wave.cd = wave.cdMax;
                 return;
+            }
+
+        }
+
+        // Cast
+        public static void Cast_TryCast(GameContext ctx, TowerEntity tower, float fixdt) {
+
+            var castModel = tower.castModel;
+            if (castModel.skills == null || castModel.skills.Count == 0) {
+                return;
+            }
+
+            for (int i = 0; i < castModel.skills.Count; i += 1) {
+                var skill = castModel.skills[i];
+                Cast_TryCastOneSkill(ctx, tower, skill, fixdt);
+            }
+
+        }
+
+        static void Cast_TryCastOneSkill(GameContext ctx, TowerEntity tower, SkillSubEntity skill, float fixdt) {
+            skill.cd -= fixdt;
+            if (skill.cd > 0) {
+                return;
+            }
+
+            skill.intervalTimer -= fixdt;
+            if (skill.intervalTimer <= 0) {
+                skill.intervalTimer = skill.interval;
+                Cast_CastSkill(ctx, tower, skill, fixdt);
+            }
+
+            skill.maintainTimer -= fixdt;
+            if (skill.maintainTimer <= 0) {
+                skill.maintainTimer = skill.maintain;
+                skill.cd = skill.cdMax;
+                return;
+            }
+
+        }
+
+        static void Cast_CastSkill(GameContext ctx, TowerEntity tower, SkillSubEntity skill, float fixdt) {
+
+            if (skill.hasSpawnBullet) {
+                if (skill.autoCastType == SkillAutoCastType.NeedTarget) {
+                    var bullet = BulletDomain.Spawn(ctx, skill.spawnBulletTypeID, tower.allyFlag, tower.lpos);
+                } else if (skill.autoCastType == SkillAutoCastType.FreeTarget) {
+                    var bullet = BulletDomain.Spawn(ctx, skill.spawnBulletTypeID, tower.allyFlag, tower.lpos);
+                } else {
+                    Debug.LogError("SkillAutoCastType not found");
+                }
             }
 
         }

@@ -6,7 +6,7 @@ namespace TDHeart {
     public class TowerEntity : MonoBehaviour {
 
         public int id;
-        public readonly EntityType entityType = EntityType.Tower;
+        public readonly EntityFlag entityType = EntityFlag.Tower;
         public AllyFlag allyFlag;
 
         public Vector3Int lpos;
@@ -14,11 +14,15 @@ namespace TDHeart {
         // Spawner
         public TowerSpawnerModel spawnerModel;
 
+        // Cast
+        public TowerCastModel castModel;
+
         GameObject mod;
 
         public void Ctor(GameObject mod) {
             this.mod = mod;
             spawnerModel = new TowerSpawnerModel();
+            castModel = new TowerCastModel();
         }
 
         public void Init() {

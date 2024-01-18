@@ -35,7 +35,7 @@ namespace TDHeart {
             tower.allyFlag = allyFlag;
             tower.Pos_Set(pos);
 
-            // spawner
+            // Spawner
             var spawnerTM = tm.spawnerTM;
             var spawnerModel = tower.spawnerModel;
             if (spawnerTM != null && spawnerTM.isSpawner) {
@@ -58,6 +58,34 @@ namespace TDHeart {
                 spawnerModel.waveNumber = 0;
                 spawnerModel.path = spawnerTM.path;
             }
+
+            // Cast
+            var castModel = tower.castModel;
+            var skills = tm.skills;
+            if (skills != null && skills.Length > 0) {
+                for (int i = 0; i < skills.Length; i += 1) {
+                    SkillSO skillSO = skills[i];
+                    SkillSubEntity skill = new SkillSubEntity();
+                    skill.typeID = skillSO.typeID;
+                    skill.typeName = skillSO.typeName;
+
+                    skill.autoCastType = skillSO.autoCastType;
+                    skill.castAimType = skillSO.castAimType;
+                    skill.castTargetEntityFlag = skillSO.castTargetEntityFlag;
+                    skill.castRange = skillSO.castRange;
+                    skill.cd = skillSO.cd;
+                    skill.cdMax = skillSO.cd;
+                    skill.maintain = skillSO.maintain;
+                    skill.maintainTimer = skillSO.maintain;
+                    skill.interval = skillSO.interval;
+                    skill.intervalTimer = skillSO.interval;
+
+                    skill.hasSpawnBullet = skillSO.hasSpawnBullet;
+                    skill.spawnBulletTypeID = skillSO.spawnBulletTypeID;
+                    castModel.skills.Add(skill);
+                }
+            }
+
             return tower;
         }
 

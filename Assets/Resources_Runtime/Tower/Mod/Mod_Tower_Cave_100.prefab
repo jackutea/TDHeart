@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5473207627273986470}
   - component: {fileID: 6165438691880067838}
   m_Layer: 0
-  m_Name: Mod_Tower_Cave
+  m_Name: Mod_Tower_Cave_100
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

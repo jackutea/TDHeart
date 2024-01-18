@@ -5,7 +5,7 @@ namespace TDHeart {
     public class BulletEntity : MonoBehaviour {
 
         public int id;
-        public readonly EntityType entityType = EntityType.Bullet;
+        public readonly EntityFlag entityType = EntityFlag.Bullet;
         public AllyFlag allyFlag;
         public Vector3 lpos;
 

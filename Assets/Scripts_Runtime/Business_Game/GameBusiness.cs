@@ -58,6 +58,7 @@ namespace TDHeart {
             for (int i = 0; i < towerLen; i += 1) {
                 var tower = towers[i];
                 TowerDomain.Spawner_TrySpawn(ctx, tower, fixdt);
+                TowerDomain.Cast_TryCast(ctx, tower, fixdt);
             }
 
             int roleLen = ctx.roleRepository.TakeAll(out var roles);

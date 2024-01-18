@@ -5,7 +5,7 @@ namespace TDHeart {
     public class PropEntity : MonoBehaviour {
 
         public int id;
-        public readonly EntityType entityType = EntityType.Prop;
+        public readonly EntityFlag entityType = EntityFlag.Prop;
         public AllyFlag allyFlag;
         public Vector3 lpos;
 

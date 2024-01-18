@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fef0b9d2af1249d49a8e423c4d968348, type: 3}
-  m_Name: SO_Tower_Cave
+  m_Name: SO_Tower_Cave_100
   m_EditorClassIdentifier: 
   typeID: 100
   typeName: 
@@ -25,4 +25,5 @@ MonoBehaviour:
       count: 5
     path:
     - {x: 0, y: 0, z: 0}
+  skills: []
   modPrefab: {fileID: 3626270587417034756, guid: 888d7dd0e51a6dc45833fd743a5803fc, type: 3}

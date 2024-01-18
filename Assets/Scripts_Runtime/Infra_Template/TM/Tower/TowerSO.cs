@@ -10,6 +10,8 @@ namespace TDHeart {
 
         public TowerSpawnerTM spawnerTM;
 
+        public SkillSO[] skills;
+
         public GameObject modPrefab;
 
     }

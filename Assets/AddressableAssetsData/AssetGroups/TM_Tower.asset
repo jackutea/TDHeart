@@ -18,7 +18,13 @@ MonoBehaviour:
   m_GUID: 2daee6c4965c2ff4087275b8a90ac9a3
   m_SerializeEntries:
   - m_GUID: 47eeb80fa54a76d4bbef82c066c0f725
-    m_Address: SO_Tower_Cave
+    m_Address: SO_Tower_Cave_100
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TM_Tower
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ea038078e074f34b841282fdfca7fce
+    m_Address: SO_Tower_Arrow_200
     m_ReadOnly: 0
     m_SerializedLabels:
     - TM_Tower
