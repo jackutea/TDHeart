@@ -7,4 +7,5 @@ Role(Monster)
     - Move By Path
     - Attack Tower
 Tower
+    - Upgrade
 Path

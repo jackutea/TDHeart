@@ -43,6 +43,10 @@ namespace TDHeart {
             return entities.TryGetValue("Entity_Tower", out go);
         }
 
+        public bool Entity_TryGetCell(out GameObject go) {
+            return entities.TryGetValue("Entity_Cell", out go);
+        }
+
         public bool Entity_TryGetRole(out GameObject go) {
             return entities.TryGetValue("Entity_Role", out go);
         }

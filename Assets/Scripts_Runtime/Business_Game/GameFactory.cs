@@ -11,10 +11,14 @@ namespace TDHeart {
             return player;
         }
 
-        public static CellEntity Cell_Create(IDService idService, int typeID, Vector3Int pos) {
-            CellEntity cell = new CellEntity();
+        public static CellEntity Cell_Create(TemplateContext templateContext, IDService idService, int typeID, Vector3Int pos) {
+            bool has = templateContext.Entity_TryGetCell(out GameObject prefab);
+            if (!has) {
+                Debug.LogError("Cell prefab not found");
+            }
+            CellEntity cell = GameObject.Instantiate(prefab).GetComponent<CellEntity>();
             cell.id = idService.cellID++;
-            cell.lpos = pos;
+            cell.Pos_Set(pos);
             return cell;
         }
 
