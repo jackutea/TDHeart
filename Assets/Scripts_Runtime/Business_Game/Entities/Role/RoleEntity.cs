@@ -8,6 +8,7 @@ namespace TDHeart {
         public readonly EntityFlag entityType = EntityFlag.Role;
         public int belongTowerID;
         public AllyFlag allyFlag;
+
         public Vector3 lpos;
         public Vector3 ldir;
 
@@ -31,10 +32,9 @@ namespace TDHeart {
             GameObject.Destroy(gameObject);
         }
 
-        public void DrawUI(Camera camera) {
-            Vector3 screenPos = camera.WorldToScreenPoint(transform.position);
-            float screenH = Screen.height;
-            GUI.DrawTexture(new Rect(screenPos.x, screenH - screenPos.y, 100, 10), Texture2D.whiteTexture);
+        public void R_Update() {
+            transform.position = lpos;
+            transform.LookAt(ldir.normalized + lpos);
         }
 
         public void Pos_Set(Vector3 rpos) {
@@ -64,11 +64,6 @@ namespace TDHeart {
                 lpos += ldir.normalized * dist;
             }
 
-        }
-
-        public void R_Update() {
-            transform.position = lpos;
-            transform.LookAt(ldir.normalized + lpos);
         }
 
     }

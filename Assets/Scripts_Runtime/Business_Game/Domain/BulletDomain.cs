@@ -10,6 +10,10 @@ namespace TDHeart {
             return bullet;
         }
 
+        public static void Fly(GameContext ctx, BulletEntity bullet, float fixdt) {
+            bullet.Fly(fixdt);
+        }
+
     }
 
 }

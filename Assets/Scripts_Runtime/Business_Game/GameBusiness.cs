@@ -54,6 +54,7 @@ namespace TDHeart {
         }
 
         static void Normal_FixedTick(GameContext ctx, float fixdt) {
+
             int towerLen = ctx.towerRepository.TakeAll(out var towers);
             for (int i = 0; i < towerLen; i += 1) {
                 var tower = towers[i];
@@ -67,6 +68,12 @@ namespace TDHeart {
                 RoleDomain.Move_Auto(ctx, role, fixdt);
                 RoleDomain.Overlap_Prop(ctx, role);
             }
+
+            int bulletLen = ctx.bulletRepository.TakeAll(out var bullets);
+            for (int i = 0; i < bulletLen; i += 1) {
+                var bullet = bullets[i];
+                BulletDomain.Fly(ctx, bullet, fixdt);
+            }
         }
 
         static void Normal_PostTick(GameContext ctx, float dt) {
@@ -75,6 +82,12 @@ namespace TDHeart {
             for (int i = 0; i < roleLen; i += 1) {
                 var role = roles[i];
                 role.R_Update();
+            }
+
+            int bulletLen = ctx.bulletRepository.TakeAll(out var bullets);
+            for (int i = 0; i < bulletLen; i += 1) {
+                var bullet = bullets[i];
+                bullet.R_Update();
             }
 
             UIApp.P_HeartInfo_SetHeart(ctx.uiContext, ctx.player.hp);

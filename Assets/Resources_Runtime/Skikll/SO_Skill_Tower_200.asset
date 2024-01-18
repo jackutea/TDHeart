@@ -16,8 +16,8 @@ MonoBehaviour:
   typeName: 
   autoCastType: 1
   castAimType: 2
-  castTargetEntityFlag: 0
-  castRange: 5
+  castTargetEntityFlag: 1
+  castRange: 10
   cd: 1.5
   maintain: 0
   interval: 0

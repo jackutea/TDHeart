@@ -94,14 +94,16 @@ namespace TDHeart {
                 return;
             }
 
+            bool isAtLeastCastOnce = false;
+
             skill.intervalTimer -= fixdt;
             if (skill.intervalTimer <= 0) {
                 skill.intervalTimer = skill.interval;
-                Cast_CastSkill(ctx, tower, skill, fixdt);
+                isAtLeastCastOnce |= Cast_CastSkill(ctx, tower, skill, fixdt);
             }
 
             skill.maintainTimer -= fixdt;
-            if (skill.maintainTimer <= 0) {
+            if (skill.maintainTimer <= 0 && isAtLeastCastOnce) {
                 skill.maintainTimer = skill.maintain;
                 skill.cd = skill.cdMax;
                 return;
@@ -109,17 +111,29 @@ namespace TDHeart {
 
         }
 
-        static void Cast_CastSkill(GameContext ctx, TowerEntity tower, SkillSubEntity skill, float fixdt) {
+        static bool Cast_CastSkill(GameContext ctx, TowerEntity tower, SkillSubEntity skill, float fixdt) {
+
+            bool casted = false;
 
             if (skill.hasSpawnBullet) {
                 if (skill.autoCastType == SkillAutoCastType.NeedTarget) {
-                    var bullet = BulletDomain.Spawn(ctx, skill.spawnBulletTypeID, tower.allyFlag, tower.lpos);
+                    bool has = ctx.TryGetNearestEntity(skill.castTargetEntityFlag, tower.allyFlag.Opposite(), tower.lpos, skill.castRange, out var outEntityFlag, out var outID);
+                    has = ctx.TryGetEntityPos(outEntityFlag, outID, out var targetPos);
+                    if (has) {
+                        var bullet = BulletDomain.Spawn(ctx, skill.spawnBulletTypeID, tower.allyFlag, tower.lpos);
+                        bullet.targetPos = targetPos;
+                        bullet.targetDir = (targetPos - tower.lpos).normalized;
+                        bullet.flySpeed = 10f;
+                        casted = true;
+                    }
                 } else if (skill.autoCastType == SkillAutoCastType.FreeTarget) {
                     var bullet = BulletDomain.Spawn(ctx, skill.spawnBulletTypeID, tower.allyFlag, tower.lpos);
                 } else {
                     Debug.LogError("SkillAutoCastType not found");
                 }
             }
+
+            return casted;
 
         }
 

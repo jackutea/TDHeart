@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace TDHeart {
 
@@ -25,6 +26,23 @@ namespace TDHeart {
 
         public void Remove(TowerEntity entity) {
             all.Remove(entity.id);
+        }
+
+        public bool TryGetNearest(Vector3 pos, AllyFlag allyFlag, float range, out TowerEntity result) {
+            result = null;
+            float minDistanceSqr = float.MaxValue;
+            float rangeSqr = range * range;
+            foreach (var item in all.Values) {
+                if (item.allyFlag != allyFlag) {
+                    continue;
+                }
+                float distanceSqr = Vector3.SqrMagnitude(pos - item.lpos);
+                if (distanceSqr < minDistanceSqr) {
+                    minDistanceSqr = distanceSqr;
+                    result = item;
+                }
+            }
+            return result != null && minDistanceSqr <= rangeSqr;
         }
 
         public int TakeAll(out TowerEntity[] result) {
