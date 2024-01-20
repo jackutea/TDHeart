@@ -102,8 +102,8 @@ namespace TDHeart {
             role.allyFlag = allyFlag;
             role.Pos_Set(pos);
 
-            role.hp = 7;
-            role.hpMax = 10;
+            role.hp = 2;
+            role.hpMax = 2;
             return role;
         }
 

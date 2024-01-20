@@ -24,6 +24,8 @@ namespace TDHeart {
                 tower.spawnerModel.spawnedEnemyIDs.Remove(role.id);
             }
 
+            UIApp.H_HpBar_Close(ctx.uiContext, role.GetOnlyID());
+
             role.TearDown();
             ctx.roleRepository.Remove(role);
 
@@ -44,6 +46,14 @@ namespace TDHeart {
                 // Deadline
                 PlayerDomain.Hurt(ctx, 1);
 
+                // Unspawn
+                Unspawn(ctx, role);
+            }
+        }
+
+        public static void Hurt(GameContext ctx, RoleEntity role, int damage) {
+            role.Hurt(damage);
+            if (role.hp <= 0) {
                 // Unspawn
                 Unspawn(ctx, role);
             }

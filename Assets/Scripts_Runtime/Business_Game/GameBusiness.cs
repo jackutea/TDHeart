@@ -73,6 +73,7 @@ namespace TDHeart {
             for (int i = 0; i < bulletLen; i += 1) {
                 var bullet = bullets[i];
                 BulletDomain.Fly(ctx, bullet, fixdt);
+                BulletDomain.Overlap(ctx, bullet);
             }
         }
 

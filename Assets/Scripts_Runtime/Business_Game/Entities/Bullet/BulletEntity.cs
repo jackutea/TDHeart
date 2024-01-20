@@ -20,6 +20,10 @@ namespace TDHeart {
 
         }
 
+        public void TearDown() {
+            GameObject.Destroy(gameObject);
+        }
+
         public void R_Update() {
             transform.position = lpos;
             transform.LookAt(ldir.normalized + lpos);

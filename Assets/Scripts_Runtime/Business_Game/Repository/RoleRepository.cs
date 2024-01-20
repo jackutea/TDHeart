@@ -24,6 +24,16 @@ namespace TDHeart {
             return all.TryGetValue(id, out entity);
         }
 
+        public RoleEntity Find(Predicate<RoleEntity> match) {
+            return all.Values.FirstOrDefault(value => match(value));
+        }
+
+        public void Foreach(Action<RoleEntity> action) {
+            foreach (var item in all.Values) {
+                action(item);
+            }
+        }
+
         public bool TryGetNearest(Vector3 pos, AllyFlag allyFlag, float range, out RoleEntity result) {
             result = null;
             float minDistanceSqr = float.MaxValue;
