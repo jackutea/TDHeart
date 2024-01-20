@@ -10,13 +10,6 @@ namespace TDHeart {
             return role;
         }
 
-        public static RoleEntity SpawnByTower(GameContext ctx, TowerEntity tower, int typeID) {
-            RoleEntity role = Spawn(ctx, typeID, tower.lpos, tower.allyFlag);
-            role.Pos_Set(tower.lpos);
-            role.moveModel.path = tower.spawnerModel.path;
-            return role;
-        }
-
         public static void Unspawn(GameContext ctx, RoleEntity role) {
 
             bool hasParent = ctx.towerRepository.TryGet(role.belongTowerID, out TowerEntity tower);

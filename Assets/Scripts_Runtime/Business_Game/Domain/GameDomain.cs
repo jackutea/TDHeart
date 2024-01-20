@@ -13,7 +13,6 @@ namespace TDHeart {
             TowerDomain.Spawn(ctx, 100, new Vector3Int(0, 0, 10), AllyFlag.Monster); // Cave
             TowerDomain.Spawn(ctx, 200, new Vector3Int(-1, 0, 7), AllyFlag.Player); // Cave
             PropDomain.Spawn(ctx, 100, AllyFlag.Player, new Vector3Int(0, 0, 0)); // DeadLine
-            BulletDomain.Spawn(ctx, 100, AllyFlag.Player, new Vector3(-5, 0, 0)); // DeadLine
 
             UIApp.P_HeartInfo_Open(ctx.uiContext);
         }
