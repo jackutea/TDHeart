@@ -32,6 +32,10 @@ namespace TDHeart {
             GameObject.Destroy(gameObject);
         }
 
+        public I32I32_U64 GetOnlyID() {
+            return new I32I32_U64(id, (int)entityType);
+        }
+
         public void R_Update() {
             transform.position = lpos;
             transform.LookAt(ldir.normalized + lpos);

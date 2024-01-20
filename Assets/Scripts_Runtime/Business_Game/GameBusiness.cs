@@ -81,7 +81,7 @@ namespace TDHeart {
             int roleLen = ctx.roleRepository.TakeAll(out var roles);
             for (int i = 0; i < roleLen; i += 1) {
                 var role = roles[i];
-                role.R_Update();
+                RoleDomain.Render(ctx, role);
             }
 
             int bulletLen = ctx.bulletRepository.TakeAll(out var bullets);

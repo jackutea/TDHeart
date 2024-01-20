@@ -10,6 +10,13 @@ namespace TDHeart {
             return role;
         }
 
+        public static RoleEntity SpawnByTower(GameContext ctx, TowerEntity tower, int typeID) {
+            RoleEntity role = Spawn(ctx, typeID, tower.lpos, tower.allyFlag);
+            role.Pos_Set(tower.lpos);
+            role.moveModel.path = tower.spawnerModel.path;
+            return role;
+        }
+
         public static void Unspawn(GameContext ctx, RoleEntity role) {
 
             bool hasParent = ctx.towerRepository.TryGet(role.belongTowerID, out TowerEntity tower);
@@ -22,11 +29,9 @@ namespace TDHeart {
 
         }
 
-        public static RoleEntity SpawnByTower(GameContext ctx, TowerEntity tower, int typeID) {
-            RoleEntity role = Spawn(ctx, typeID, tower.lpos, tower.allyFlag);
-            role.Pos_Set(tower.lpos);
-            role.moveModel.path = tower.spawnerModel.path;
-            return role;
+        public static void Render(GameContext ctx, RoleEntity role) {
+            UIApp.H_HpBar_OpenAndShow(ctx.uiContext, role.GetOnlyID(), role.transform.position + Vector3.up * 1.5f, ctx.cameraContext.Pos(), 1f, role.hp, role.hpMax);
+            role.R_Update();
         }
 
         public static void Move_Auto(GameContext ctx, RoleEntity role, float fixdt) {

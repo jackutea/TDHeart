@@ -16,6 +16,7 @@ namespace TDHeart {
 
         public UIContext uiContext;
         public TemplateContext templateContext;
+        public CameraContext cameraContext;
 
         public GameContext() {
 
@@ -32,9 +33,10 @@ namespace TDHeart {
 
         }
 
-        public void Inject(UIContext uiContext, TemplateContext templateContext) {
+        public void Inject(UIContext uiContext, TemplateContext templateContext, CameraContext cameraContext) {
             this.uiContext = uiContext;
             this.templateContext = templateContext;
+            this.cameraContext = cameraContext;
         }
 
         public bool TryGetNearestEntity(EntityFlag entityFlag, AllyFlag allyFlag, Vector3 pos, float range, out EntityFlag outEntityFlag, out int outID) {

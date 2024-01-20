@@ -17,7 +17,7 @@ namespace TDHeart {
 
         void Awake() {
 
-            mainContext = new MainContext(panelCanvas, hudCanvas);
+            mainContext = new MainContext(Camera.main, panelCanvas, hudCanvas);
 
             TemplateInfra.LoadAll(mainContext.templateContext);
 

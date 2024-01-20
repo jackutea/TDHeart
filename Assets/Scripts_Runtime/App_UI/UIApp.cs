@@ -92,6 +92,25 @@ namespace TDHeart {
             panel?.Close();
         }
 
+        // H HpBar
+        public static void H_HpBar_OpenAndShow(UIContext ctx, I32I32_U64 onlyID, Vector3 pos, Vector3 cameraPos, float width, float hp, float hpMax) {
+            bool has = ctx.H_HpBar_TryGet(onlyID, out var hud);
+            if (!has) {
+                hud = UIFactory.H_HpBar_Create(ctx);
+                hud.Ctor(onlyID);
+                ctx.H_HpBar_Add(onlyID, hud);
+            }
+            hud.Init(pos, cameraPos, width, hp, hpMax);
+        }
+
+        public static void H_HpBar_Close(UIContext ctx, I32I32_U64 onlyID) {
+            bool has = ctx.H_HpBar_TryGet(onlyID, out var hud);
+            if (has) {
+                ctx.H_HpBar_Remove(onlyID);
+                hud.Close();
+            }
+        }
+
     }
 
 }
