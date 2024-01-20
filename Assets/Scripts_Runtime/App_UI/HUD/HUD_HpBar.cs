@@ -6,7 +6,7 @@ namespace TDHeart.UI {
     public class HUD_HpBar : MonoBehaviour {
 
         public I32I32_U64 onlyID;
-        [SerializeField] RectTransform barRect;
+        [SerializeField] Image imgBg;
         [SerializeField] Image imgBar;
 
         public void Ctor(I32I32_U64 onlyID) {
@@ -15,7 +15,7 @@ namespace TDHeart.UI {
 
         public void Init(Vector3 pos, Vector3 cameraPos, float width, float hp, float hpMax) {
             transform.position = pos;
-            transform.LookAt(cameraPos);
+            transform.forward = (pos - cameraPos).normalized;
             SetWidth(width);
             SetHp(hp, hpMax);
         }
@@ -25,16 +25,21 @@ namespace TDHeart.UI {
         }
 
         public void SetWidth(float width) {
-            var rect = barRect.rect;
-            barRect.sizeDelta = new Vector2(width, rect.height);
+            var barRect = imgBar.rectTransform;
+            var bgRect = imgBg.rectTransform;
+            bgRect.sizeDelta = new Vector2(width, bgRect.sizeDelta.y);
+            barRect.sizeDelta = new Vector2(width, barRect.sizeDelta.y);
         }
 
         public void SetHp(float hp, float hpMax) {
+            var barRect = imgBar.rectTransform;
+            var bgRect = imgBg.rectTransform;
             if (hpMax == 0) {
-                imgBar.fillAmount = 0;
+                barRect.sizeDelta = new Vector2(0, barRect.sizeDelta.y);
                 return;
             }
-            imgBar.fillAmount = hp / hpMax;
+            float percent = hp / hpMax;
+            barRect.sizeDelta = new Vector2(bgRect.sizeDelta.x * percent, barRect.sizeDelta.y);
         }
 
     }
